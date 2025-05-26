@@ -8,6 +8,7 @@
 #include "diff.h"
 #include "ls.h"
 #include "mkdir.h"
+#include "rmdir.h"
 #include "mv.h"
 #include "pwd.h"
 #include "touch.h"
@@ -98,6 +99,22 @@ int main() {
             run_mkdir(&dTree, arg);
             save_tree_to_file(&dTree, SAVE_FILE);
 
+
+        } else if (strcmp(cmd, "rmdir") == 0) {
+	        char* arg1 = strtok(NULL, " ");
+    	    char* arg2 = strtok(NULL, " ");
+
+    	    if (arg1 == NULL) {
+       		    printf("rmdir: missing operand\n");
+            } else if (strcmp(arg1, "-p") == 0) {
+	    	    if (arg2 == NULL) {
+           	        printf("rmdir: No such a path\n");
+        	    } else {
+            	    remove_dir_p_path(&dTree, arg2);
+        	    }
+    	    } else {
+ 		        remove_dir_path(&dTree, arg1);
+            }   
         } else if (strcmp(cmd, "mv") == 0) {
             char* src  = strtok(NULL, " ");
             char* dest = strtok(NULL, " ");
