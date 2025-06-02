@@ -38,4 +38,10 @@ int remove_dir_path(DirectoryTree* dTree, const char* path);
  */
 int remove_dir_p_path(DirectoryTree* dTree, const char* path);
 
+/*
+ * @multithreading
+ */
+void* rmdir_thread_worker(void* arg);
+void run_rmdir_multithread(DirectoryTree* tree, const char* arg);
+
 #endif // RMDIR_H
