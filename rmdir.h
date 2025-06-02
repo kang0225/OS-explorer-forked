@@ -5,6 +5,15 @@
 #include "header.h"    // DirectoryTree, TreeNode 정의 :contentReference[oaicite:1]{index=1}
 #include "tree_io.h"   // save_tree_to_file, load_tree_from_file 선언 :contentReference[oaicite:2]{index=2}
 
+#define MAX_TOKENS    50
+#define BUF_SIZE      1024
+
+typedef struct {
+    DirectoryTree* tree;
+    char path[BUF_SIZE];
+    int pflag;
+} RmdirThreadArg;
+
 /**
  * @brief 현재 디렉터리(dTree->current) 아래에서 단일 디렉터리 제거
  * @param dTree 디렉터리 트리
